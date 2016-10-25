@@ -1,0 +1,51 @@
+# master
+-
+  artifacts:
+    - path: '*.nupkg'
+
+  assembly_info:
+    assembly_version: '{version}'
+    assembly_file_version: '{version}'
+    assembly_informational_version: '{version}'
+    file: AssemblyInfo.*
+    patch: true
+
+  branches:
+    only:
+      - master
+  
+  skip_tags: true
+
+  build:
+    parallel: true
+    publish_nuget: true
+    verbosity: quiet
+
+  cache:
+    - packages -> **\packages.config
+    - C:\downloads -> appveyor.yml
+
+  configuration: Release
+
+  skip_commits:
+    message: /README.md edited online with Bitbucket/
+
+  services:
+
+ 
+
+  version: 0.1.0.{build}
+
+  environment:
+    access_token:
+      secure: VcA+CaIzcGl05eS4qYkE1fbKI30Jq7Yr4LbQYNh78YYT09f/wODSbu+kVdsHTZhq
+    git_email:
+      secure: p+keoDi2jTNqjh81Smi+yenFDrtWTaGqPYJ9aTCGMGM=
+
+  on_success:
+    - ps: git config --global user.email "$($env:git_email)"
+    - ps: git config --global user.name "luap"
+    - ps: git config --global credential.helper store
+    - ps: Add-Content "$env:USERPROFILE\.git-credentials" "https://$($env:access_token):x-oauth-basic@github.com`n"
+    - ps: git tag $($env:appveyor_build_version) $($env:APPVEYOR_REPO_COMMIT)
+    - ps: git push origin --tags --quiet
