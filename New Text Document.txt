@@ -1,0 +1,25 @@
+open ps as adminstrator
+Set-ExecutionPolicy RemoteSigned
+
+Clear-Host => clear console
+Write-Host "message"
+Write-Host "asd" -ForgroundColor Red -BackgroundColor White
+
+Start-Sleep -s 10=> second 10
+to create variable 
+$varname
+To get current path
+$PSScriptRoot
+Get-Content {path} =>to get files
+
+${env:ProgramFiles(x86)} program directory
+
+to comment # is used
+foreach($projectFile in $projectFiles){
+}
+
+[System.IO.Path]::GetFileName({path})
+
+$variable -eq $variable2
+
+
