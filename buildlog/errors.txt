@@ -1,1 +1,0 @@
-E:\projects\SilentTurtle\Tryouts\test2\testApp.sln.metaproj : error MSB4057: The target "built" does not exist in the project. [E:\projects\SilentTurtle\Tryouts\test2\testApp.sln]
